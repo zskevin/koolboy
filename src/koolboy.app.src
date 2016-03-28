@@ -1,0 +1,12 @@
+{application, koolboy,
+ [
+  {description, "An erlang pool in the name of kevin"},
+  {vsn, "0.0.1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { koolboy_app, []}},
+  {env, []}
+ ]}.
