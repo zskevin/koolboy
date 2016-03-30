@@ -1,36 +1,65 @@
-!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
-!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
-!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
-!_TAG_PROGRAM_NAME	Exuberant Ctags	//
-!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.8	//
-CHILD	src/koolboy_sup.erl	/^-define(CHILD(I, Type), {I, {I, start_link, []}, permanent, 5000, Type, [I]}).$/;"	d	language:Erlang
-Name	src/koolboy.erl	/^Name :: (atom() | pid()) |$/;"	f	language:Erlang	module:koolboy
-TIMEOUT	src/koolboy.erl	/^-define(TIMEOUT, 5000). %%缺省超时时间5000毫秒$/;"	d	language:Erlang
-checkin	src/koolboy.erl	/^checkin(Pool, Worker) when is_pid(Worker) ->$/;"	f	language:Erlang	module:koolboy
-checkout	src/koolboy.erl	/^checkout(Pool) ->$/;"	f	language:Erlang	module:koolboy
-checkout	src/koolboy.erl	/^checkout(Pool, Block) ->$/;"	f	language:Erlang	module:koolboy
-checkout	src/koolboy.erl	/^checkout(Pool, Block, Timeout) ->$/;"	f	language:Erlang	module:koolboy
-child_spec	src/koolboy.erl	/^child_spec(PoolId, PoolArgs) ->$/;"	f	language:Erlang	module:koolboy
-child_spec	src/koolboy.erl	/^child_spec(PoolId, PoolArgs, WorkerArgs) ->$/;"	f	language:Erlang	module:koolboy
-code_change	src/koolboy.erl	/^code_change(OldVsn, State, Extra) ->$/;"	f	language:Erlang	module:koolboy
-handle_call	src/koolboy.erl	/^handle_call(Request, From, State) ->$/;"	f	language:Erlang	module:koolboy
-handle_cast	src/koolboy.erl	/^handle_cast(Request, State) ->$/;"	f	language:Erlang	module:koolboy
-handle_info	src/koolboy.erl	/^handle_info(Info, State) ->$/;"	f	language:Erlang	module:koolboy
-init	src/koolboy.erl	/^init(Args) ->$/;"	f	language:Erlang	module:koolboy
-init	src/koolboy_sup.erl	/^init([]) ->$/;"	f	language:Erlang	module:koolboy_sup
-koolboy	src/koolboy.erl	/^-module(koolboy).$/;"	m	language:Erlang
-koolboy_app	src/koolboy_app.erl	/^-module(koolboy_app).$/;"	m	language:Erlang
-koolboy_sup	src/koolboy_sup.erl	/^-module(koolboy_sup).$/;"	m	language:Erlang
-start	src/koolboy.erl	/^start(PoolArgs)->$/;"	f	language:Erlang	module:koolboy
-start	src/koolboy.erl	/^start(PoolArgs, WorkerArgs) ->$/;"	f	language:Erlang	module:koolboy
-start	src/koolboy_app.erl	/^start(_StartType, _StartArgs) ->$/;"	f	language:Erlang	module:koolboy_app
-start_link	src/koolboy.erl	/^start_link(PoolArgs) ->$/;"	f	language:Erlang	module:koolboy
-start_link	src/koolboy.erl	/^start_link(PoolArgs, WorkerArgs) ->$/;"	f	language:Erlang	module:koolboy
-start_link	src/koolboy_sup.erl	/^start_link() ->$/;"	f	language:Erlang	module:koolboy_sup
-start_pool	src/koolboy.erl	/^start_pool(StartFun, PoolArgs, WorkerArgs) ->$/;"	f	language:Erlang	module:koolboy
-state	src/koolboy.erl	/^-record(state, {$/;"	r	language:Erlang
-stop	src/koolboy_app.erl	/^stop(_State) ->$/;"	f	language:Erlang	module:koolboy_app
-terminate	src/koolboy.erl	/^terminate(Reason, State) ->$/;"	f	language:Erlang	module:koolboy
-transaction	src/koolboy.erl	/^transaction(Pool, Fun) ->$/;"	f	language:Erlang	module:koolboy
-transaction	src/koolboy.erl	/^transaction(Pool, Fun, Timeout) ->$/;"	f	language:Erlang	module:koolboy
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted/
+#state	./src/koolboy.erl	/^-\s\*record\s\*(\s\*state\>/;"	r	file:
+?CHILD	./src/koolboy_sup.erl	/^-\s\*define\s\*(\s\*CHILD\>/;"	d	file:
+?TIMEOUT	./src/koolboy.erl	/^-\s\*define\s\*(\s\*TIMEOUT\>/;"	d	file:
+CHILD	./src/koolboy_sup.erl	/^-\s\*define\s\*(\s\*CHILD\>/;"	d	file:
+TIMEOUT	./src/koolboy.erl	/^-\s\*define\s\*(\s\*TIMEOUT\>/;"	d	file:
+checkin	./src/koolboy.erl	/^checkin\>/;"	f	file:
+checkout	./src/koolboy.erl	/^checkout\>/;"	f	file:
+child_spec	./src/koolboy.erl	/^child_spec\>/;"	f	file:
+code_change	./src/koolboy.erl	/^code_change\>/;"	f	file:
+dismiss_worker	./src/koolboy.erl	/^dismiss_worker\>/;"	f	file:
+hancle_call	./src/koolboy.erl	/^hancle_call\>/;"	f	file:
+handle_call	./src/koolboy.erl	/^handle_call\>/;"	f	file:
+handle_cast	./src/koolboy.erl	/^handle_cast\>/;"	f	file:
+handle_checkin	./src/koolboy.erl	/^handle_checkin\>/;"	f	file:
+handle_info	./src/koolboy.erl	/^handle_info\>/;"	f	file:
+init	./src/koolboy.erl	/^init\>/;"	f	file:
+init	./src/koolboy_sup.erl	/^init\>/;"	f	file:
+koolboy	./src/koolboy.erl	1;"	M
+koolboy.erl	./src/koolboy.erl	1;"	F
+koolboy:checkin	./src/koolboy.erl	/^checkin\>/;"	f
+koolboy:checkout	./src/koolboy.erl	/^checkout\>/;"	f
+koolboy:child_spec	./src/koolboy.erl	/^child_spec\>/;"	f
+koolboy:code_change	./src/koolboy.erl	/^code_change\>/;"	f
+koolboy:dismiss_worker	./src/koolboy.erl	/^dismiss_worker\>/;"	f
+koolboy:hancle_call	./src/koolboy.erl	/^hancle_call\>/;"	f
+koolboy:handle_call	./src/koolboy.erl	/^handle_call\>/;"	f
+koolboy:handle_cast	./src/koolboy.erl	/^handle_cast\>/;"	f
+koolboy:handle_checkin	./src/koolboy.erl	/^handle_checkin\>/;"	f
+koolboy:handle_info	./src/koolboy.erl	/^handle_info\>/;"	f
+koolboy:init	./src/koolboy.erl	/^init\>/;"	f
+koolboy:new_worker	./src/koolboy.erl	/^new_worker\>/;"	f
+koolboy:pid_queue	./src/koolboy.erl	/^-\s\*type\s\*pid_queue\>/;"	t
+koolboy:pool	./src/koolboy.erl	/^-\s\*type\s\*pool\>/;"	t
+koolboy:prepopulate	./src/koolboy.erl	/^prepopulate\>/;"	f
+koolboy:start	./src/koolboy.erl	/^start\>/;"	f
+koolboy:start_link	./src/koolboy.erl	/^start_link\>/;"	f
+koolboy:start_pool	./src/koolboy.erl	/^start_pool\>/;"	f
+koolboy:start_ret	./src/koolboy.erl	/^-\s\*type\s\*start_ret\>/;"	t
+koolboy:status	./src/koolboy.erl	/^status\>/;"	f
+koolboy:terminate	./src/koolboy.erl	/^terminate\>/;"	f
+koolboy:transaction	./src/koolboy.erl	/^transaction\>/;"	f
+koolboy_app	./src/koolboy_app.erl	1;"	M
+koolboy_app.erl	./src/koolboy_app.erl	1;"	F
+koolboy_app:start	./src/koolboy_app.erl	/^start\>/;"	f
+koolboy_app:stop	./src/koolboy_app.erl	/^stop\>/;"	f
+koolboy_sup	./src/koolboy_sup.erl	1;"	M
+koolboy_sup.erl	./src/koolboy_sup.erl	1;"	F
+koolboy_sup:init	./src/koolboy_sup.erl	/^init\>/;"	f
+koolboy_sup:start_link	./src/koolboy_sup.erl	/^start_link\>/;"	f
+new_worker	./src/koolboy.erl	/^new_worker\>/;"	f	file:
+pid_queue	./src/koolboy.erl	/^-\s\*type\s\*pid_queue\>/;"	t	file:
+pool	./src/koolboy.erl	/^-\s\*type\s\*pool\>/;"	t	file:
+prepopulate	./src/koolboy.erl	/^prepopulate\>/;"	f	file:
+start	./src/koolboy.erl	/^start\>/;"	f	file:
+start	./src/koolboy_app.erl	/^start\>/;"	f	file:
+start_link	./src/koolboy.erl	/^start_link\>/;"	f	file:
+start_link	./src/koolboy_sup.erl	/^start_link\>/;"	f	file:
+start_pool	./src/koolboy.erl	/^start_pool\>/;"	f	file:
+start_ret	./src/koolboy.erl	/^-\s\*type\s\*start_ret\>/;"	t	file:
+state	./src/koolboy.erl	/^-\s\*record\s\*(\s\*state\>/;"	r	file:
+status	./src/koolboy.erl	/^status\>/;"	f	file:
+stop	./src/koolboy_app.erl	/^stop\>/;"	f	file:
+terminate	./src/koolboy.erl	/^terminate\>/;"	f	file:
+transaction	./src/koolboy.erl	/^transaction\>/;"	f	file:

@@ -82,9 +82,50 @@ init([], _WorkerArgs, #state{size=Size, supervisor = Sup} = State) ->
   Workers = prepopulate(Size, Sup),
   {ok, State#state{workers = Workers}}.
 
+handle_call({checkout, CRef, Block}, {FromPid, _} = From, State) ->
+  #state{supervisor = Sup,
+         workers = Workers,
+         monitors = Monitors,
+         overflow = OverFlow,
+         max_overflow = MaxOverFlow} = State,
+  case Workers of
+    [Pid | Left] ->
+      MRef = erlang:monitor(process, FromPid),
+      true = ets:insert(Monitors, {Pid, CRef, MRef}),
+      {reply, Pid, State#state{workers = Left}};
+    [] when MaxOverFlow > 0, OverFlow < MaxOverFlow ->
+      {Pid, MRef} = new_worker(Sup, FromPid),
+      true = ets:insert(Monitors, {Pid, CRef, MRef}),
+      {reply, Pid, State#state{overflow = OverFlow + 1}};
+    [] ->
+      MRef = erlang:monitor(process, FromPid),
+      Waiting = queue:in({From, CRef, MRef}, State#state.waiting),
+      {noreply, State#state{waiting = Waiting}}
+  end;
 
-handle_call(Request, From, State) ->
-  erlang:error(not_implemented).
+
+handle_call(status, _From, State) ->
+  #state{workers = Workers,
+         monitors = Monitors,
+         overflow = OverFlow} = State,
+  StateName = state_name(State),
+  {reply, {StateName, length(Workers), OverFlow, ets:info(Monitors, size)}, State};
+
+handle_call(get_avail_workers, _From, State) ->
+  Workers = State#state.workers,
+  {reply, Workers, State};
+
+handle_call(get_all_monitors, _From, State) ->
+  Monitors = ets:select(State#state.monitors, [{{'$1', '_', '$2'}, [], [{{'$1', '$2'}}]}]),
+  {reply, Monitors, State};
+
+handle_call(stop, _From, State) ->
+  {stop, normal, ok, State};
+
+handle_call(_Msg, _From, State) ->
+  Reply = {error, invalid_message},
+  {reply, Reply, State}.
+
 
 handle_cast({checkin, Pid}, State=#state{monitors = Monitors}) ->
   case ets:lookup(Monitors, Pid) of
@@ -252,13 +293,27 @@ dismiss_worker(Sup, Pid) ->
 
 handle_checkin(Pid, State) ->
   #state{supervisor = Sup,
-    waiting = Waiting,
-    monitors = Monitors,
-    overflow = Overflow,
-    strategy = Strategy} = State,
+         waiting = Waiting,
+         monitors = Monitors,
+         overflow = Overflow,
+         strategy = Strategy} = State,
   case queue:out(Waiting) of
     {{value, {From, CRef, MRef}}, Left} ->
       true = ets:insert(Monitors, {Pid, CRef, MRef}),
-      gen_server:reply(From, Pid),
+      gen_server:reply(From, Pid)
+  end.
 
-  end
+
+state_name(State=#state{overflow = OverFlow}) when OverFlow < 1 ->
+  #state{max_overflow = MaxOverFlow, workers = Workers} = State,
+  case length(Workers) == 0 of
+    true when MaxOverFlow < 1 -> full;
+    true -> overflow;
+    false -> ready
+  end;
+state_name(#state{overflow = MaxOverFlow, max_overflow = MaxOverFlow}) ->
+  full;
+state_name(_State) ->
+  overflow.
+
+
